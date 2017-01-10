@@ -1,3 +1,16 @@
+#Open file and parse data
+
+def make_dict(filename):
+
+    rest_file = open(filename)
+    rest_data = {}
+
+    for line in rest_file:
+        restaurant, rating = line.rstrip().split(":")
+        rest_data[restaurant] = rating
+
+    return rest_data
+
 
 
 def rate_rest(filename):
@@ -6,13 +19,12 @@ def rate_rest(filename):
 
 
 """
-    rest_file = open(filename)
-    rest_data = {}
 
-    for line in rest_file:
-        restaurant, rating = line.rstrip().split(":")
-        rest_data[restaurant] = rating
+rest_data = make_dict(filename)
 
+
+
+#User choice
     print "Choose your own adventure!"
     print "You have 3 choices:"
     print "1. View all ratings"
@@ -24,10 +36,12 @@ def rate_rest(filename):
     while user_input != "3":
         user_input = raw_input("Enter option 1, 2, or 3: ")
         if user_input == "1":
+#print dictionary
             for restaurant, rating in sorted(rest_data.items()):
                 print "%s is rated at %s" % (restaurant, rating)
             # continue
         elif user_input == "2":
+#rate restaurant
             user_rest = (raw_input("Enter Restaurant Name: ")).capitalize()
             user_rating = int(raw_input("Enter rating 1 to 5: "))
 
@@ -45,20 +59,5 @@ def rate_rest(filename):
 
 rate_rest("scores.txt")
 
-    # while True:
-    #     user_rest = raw_input("Enter Restaurant Name: ")
-    #     user_rating = int(raw_input("Enter rating 1 to 5: "))
-
-    #     rest_data[user_rest] = user_rating
-
-    #     for restaurant, rating in sorted(rest_data.items()):
-    #         print "%s is rated at %s" % (restaurant, rating)
-
-    #     add_rest = raw_input("Do you want to add more restaurants? (Y or N)?: ")
-    #     if add_rest.upper() == "Y":
-    #         continue
-    #     elif add_rest.upper() == "N":
-    #         print "Thanks for rating!"
-    #         break
 
          
